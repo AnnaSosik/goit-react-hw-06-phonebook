@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import React from 'react';
 import { nanoid } from '@reduxjs/toolkit';
 import { Form, Label, Button, Input } from './ContactForm.styled';
+import { ReactComponent as AddIcon } from '../icons/add.svg';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { getVisibleContacts } from 'redux/selectors';
@@ -18,24 +18,28 @@ const ContactForm = () => {
   const contacts = useSelector(getVisibleContacts);
   const dispatch = useDispatch();
 
+  // Processes form submission.
   const handleSubmit = event => {
     event.preventDefault();
 
-    // Call the onSubmit function from the parent component passing the contact object.
     const isInContacts = contacts.some(
       contact => contact.name.toLowerCase().trim() === name.toLowerCase().trim()
     );
 
+    // Checks if a contact with the same name exists in the contact list. If the contact already exists, a warning is displayed.
     if (isInContacts) {
       alert(`${name} is already in contacts`);
       return;
     }
 
+    // Call the onSubmit function from the parent component passing the contact object.
     dispatch(addContact({ name, number }));
     setName('');
     setNumber('');
   };
 
+
+// Handles changing of form field values.
   const handleChange = event => {
     const { name, value } = event.target;
 
@@ -79,7 +83,10 @@ const ContactForm = () => {
         />
       </Label>
 
-      <Button type="submit">Add contact </Button>
+      <Button type="submit">
+        <AddIcon fill="#f08080" width="25" height="25" />
+        Add contact
+      </Button>
     </Form>
   );
 };

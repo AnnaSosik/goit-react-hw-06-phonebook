@@ -19,11 +19,17 @@ const App = () => {
       <SubTitle>Contacts</SubTitle>
 
       {contacts.length > 0 ? (
+        // If there are contacts, the filtering component is displayed
+
         <Filter />
       ) : (
+        // If there are no contacts, a message about no contacts is displayed
         <Wrapper>Your phonebook is empty. Add first contact!</Wrapper>
       )}
-      {contacts.length > 0 && <ContactList />}
+      {contacts.length > 0 && (
+        // If there are contacts, the contact list component is displayed
+        <ContactList />
+      )}
     </Container>
   );
 };

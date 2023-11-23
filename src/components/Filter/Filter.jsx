@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Div, Label, Input } from './Filter.styled';
 
 import { nanoid } from '@reduxjs/toolkit';
@@ -14,6 +13,7 @@ const Filter = () => {
   const value = useSelector(getFilter);
   const dispatch = useDispatch();
 
+  // Filter value change handler
   const onChange = event => {
     const normalizedValue = event.target.value.toLowerCase();
 
@@ -35,9 +35,5 @@ const Filter = () => {
   );
 };
 
-Filter.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChangeFilter: PropTypes.func.isRequired,
-};
 
 export default Filter;
